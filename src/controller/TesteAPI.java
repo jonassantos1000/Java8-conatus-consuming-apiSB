@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testeapi;
+package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,7 +13,10 @@ import java.util.List;
 import java.util.Scanner;
 import model.Client;
 import model.Employee;
+import model.Order;
+import model.OrderItem;
 import model.Product;
+import model.Setting;
 import service.ClientService;
 import service.EmployeeService;
 
@@ -26,8 +29,38 @@ public class TesteAPI {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws Exception {    
+    public static void main(String[] args) throws Exception {
+
+        Setting set = new Setting();
+        set = service.SettingService.find();
+        System.out.println("cnpj: " + set.getCnpj());
+        System.out.println("Data: " + set.getData());
+        System.out.println("Email: " + set.getEmail());
+        System.out.println("MensagemPadrao: " + set.getMensagemPadrao());
+        System.out.println("PortaSMTP: " + set.getPortaSMTP());
+        System.out.println("RazaoSocial: " + set.getRazaoSocial());
+        System.out.println("ResponsavelLegal: " + set.getResponsavelLegal());
+        System.out.println("SSL: " + set.getSSL());
+        System.out.println("Senha: " + set.getSenha());
+        System.out.println("Smtp: " + set.getSmtp());
+        System.out.println("TLS: " + set.getTLS());
+        /*
+        List <Order> ord = new ArrayList<>();
         
+        ord=service.OrderService.findCustom("3", "", "", "", "", "", "", "");
+        
+        for(Order x : ord){
+            System.out.println("pedido: "+ x.getCodigo());
+            System.out.println("cliente: "+ x.getClient().getNome());
+            System.out.println("items: ");
+            for(OrderItem f : x.getItems()){
+                System.out.println("codigo: "+f.getProduct().getCodigo());
+                System.out.println("descricao: "+ f.getProduct().getDescricao());
+                System.out.println("Preco: "+ f.getPrice());
+                System.out.println("Quantidade: "+ f.getQuantity());
+            }
+        }
+         */
         //TESTE FIND BY ID - PRODUCT
         /* 
         Product obj = service.ProductService.findByID("6","T");
@@ -37,9 +70,7 @@ public class TesteAPI {
         System.out.println("Inativo: "+ obj.getInativo());
         System.out.println("Preco: "+ obj.getData_cadastro());
         System.out.println("Observacao: "+ obj.getObservacao());
-        */
-        
-        
+         */
         //TESTE FIND ALL - PRODUCT
         /*        
         List<Product> obj2 = service.ProductService.findAll("", "", "T", "");
@@ -51,8 +82,7 @@ public class TesteAPI {
             System.out.println("Preco: "+ obj.getData_cadastro());
             System.out.println("\n ------------------------      *********************     ------------------------  ");
         }
-        */
-
+         */
         //TESTE UPDATE PRODUTO
         /*
         Product obj = new Product();
@@ -63,13 +93,9 @@ public class TesteAPI {
         obj.setData_alteracao("2020-01-28 22:58:50");
         obj.setObservacao("Marca: Acer / Dimensaoo: 19\" ");
         service.ProductService.update(obj.getCodigo(),obj);
-        */
-        
+         */
         //TESTE DELETE PRODUTO
         //service.ProductService.delete(6);
-
-        
-        
         //TESTE INSERT - CLIENT
         /*
         Client obj = new Client();
@@ -78,9 +104,7 @@ public class TesteAPI {
         obj.setEmail("teste update@gmail.com");
         obj.setData_cadastro("2020-01-27 22:58:50");
         service.ClientService.insert(obj);
-        */
-        
-        
+         */
         //TESTE FIND BY ID - CLIENT
         /*
         Client obj = service.ClientService.findById("2");
@@ -90,8 +114,7 @@ public class TesteAPI {
         System.out.println("Endereco: "+obj.getEndereco());
         System.out.println("Email: "+obj.getEmail());
         System.out.println("Observacao: "+ obj.getObservacao());
-        */
-
+         */
         //TESTE FIND ALL - CLIENT
         /*
         List<Client> client = new ArrayList<Client>();                      
@@ -116,10 +139,9 @@ public class TesteAPI {
             
             System.out.println("---------------------------------------------------- * * * ------------------------------------------------------------");
         }
-        */
-        
+         */
         //TESTE FIND BY ID - EMPLOYEE
-         /*
+        /*
         Employee obj = service.EmployeeService.findById("2");
         System.out.println("codigo: "+obj.getCodigo());
         System.out.println("nome: "+obj.getNome());
@@ -127,8 +149,7 @@ public class TesteAPI {
         System.out.println("Endereco: "+obj.getEndereco());
         System.out.println("Email: "+obj.getEmail());
         System.out.println("Observacao: "+ obj.getObservacao());
-       */
-        
+         */
         //TESTE FIND ALL - EMPLOYEE
         /*
         List<Employee> client = new ArrayList<Employee>();                      
@@ -152,7 +173,7 @@ public class TesteAPI {
             
             System.out.println("---------------------------------------------------- * * * ------------------------------------------------------------");
         }
-        */
+         */
     }
-    
+
 }
