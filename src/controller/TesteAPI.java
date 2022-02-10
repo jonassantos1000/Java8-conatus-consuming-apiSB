@@ -17,8 +17,11 @@ import model.Order;
 import model.OrderItem;
 import model.Product;
 import model.Setting;
+import model.User;
 import service.ClientService;
 import service.EmployeeService;
+import service.UserService;
+import view.PaginaInicial;
 
 /**
  *
@@ -30,7 +33,10 @@ public class TesteAPI {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-
+        
+         new PaginaInicial().setVisible(true);
+        
+        /*
         Setting set = new Setting();
         set = service.SettingService.find();
         System.out.println("cnpj: " + set.getCnpj());
@@ -44,6 +50,7 @@ public class TesteAPI {
         System.out.println("Senha: " + set.getSenha());
         System.out.println("Smtp: " + set.getSmtp());
         System.out.println("TLS: " + set.getTLS());
+        */
         /*
         List <Order> ord = new ArrayList<>();
         
