@@ -18,13 +18,16 @@ import javax.swing.text.PlainDocument;
  */
 public class ValidaNumeros extends PlainDocument{
     
+
+    
     @Override
     public void insertString(int offs, String str,AttributeSet a) throws BadLocationException {
         super.insertString(offs, str.replaceAll("[^0-9]", ""), a);
     }
     
     public static Number nf (String numero) throws ParseException{
-        NumberFormat nf = new DecimalFormat("#,###.00");
+        NumberFormat nf = new DecimalFormat("###,###,###.00");
         return nf.parse(numero);
     }
+    
 }

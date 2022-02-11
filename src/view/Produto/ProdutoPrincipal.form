@@ -299,7 +299,7 @@
               <Table columnCount="6" rowCount="0">
                 <Column editable="false" title="Codigo" type="java.lang.Integer"/>
                 <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.String"/>
-                <Column editable="false" title="Valor" type="java.lang.String"/>
+                <Column editable="false" title="Valor" type="java.lang.Double"/>
                 <Column editable="false" title="Data Alteracao" type="java.lang.String"/>
                 <Column editable="false" title="Data Cadastro" type="java.lang.String"/>
                 <Column editable="false" title="Usuario" type="java.lang.String"/>

@@ -253,7 +253,7 @@ public class AlterarServico extends javax.swing.JFrame {
             } else {
                 Integer codigo = Integer.parseInt(cod_servico.getText());
                 String descricao = coalesce(txtDescricao.getText());
-                String data = txtData.getText();
+                String data = util.data.formatDateToEUA(txtData.getText());
                 Double preco = 0.0;
                 String cbInativo = ckInativo.isSelected() == false ? "F" : "T";
                 preco = nf(coalesce(txtValor.getText())).doubleValue();
@@ -262,7 +262,7 @@ public class AlterarServico extends javax.swing.JFrame {
                 String dataAlteracao = util.data.formatDateToEUA(util.data.getdata());
 
                 Product alterarServico = new Product(codigo, descricao, preco, data,dataAlteracao, usuario, observacao, cbInativo);
-                ProductService.insert(alterarServico);
+                ProductService.update(codigo,alterarServico);
                 this.dispose();
             }
         } catch (Exception ex) {

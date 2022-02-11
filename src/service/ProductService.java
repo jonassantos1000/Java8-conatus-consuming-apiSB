@@ -43,15 +43,15 @@ public class ProductService {
             inativo="F";
         }
         
-        if (id != null & id != "") {
+        if (id != null && !"0".equals(id)) {
             urlAPI += "&id=" + id;
         }
 
-        if (descricao != null & descricao!= "") {
+        if (descricao != null && !descricao.isEmpty()) {
             urlAPI += "&descricao=" + descricao;
         }
 
-        if (inativo != null & inativo != "") {
+        if (inativo != null && inativo != "") {
             urlAPI += "&inativo=" + inativo;
         }
         try {

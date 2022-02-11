@@ -5,6 +5,7 @@
  */
 package view.Produto;
 
+import java.text.NumberFormat;
 import util.ValidaNumeros;
 import util.data;
 import java.util.List;
@@ -35,7 +36,7 @@ public class ProdutoPrincipal extends javax.swing.JFrame {
         TableColumnModel modeltable = grid.getColumnModel();
         modeltable.getColumn(0).setPreferredWidth(70);
         modeltable.getColumn(1).setPreferredWidth(250);
-        modeltable.getColumn(2).setPreferredWidth(110);
+        modeltable.getColumn(2).setPreferredWidth(140);
         modeltable.getColumn(3).setPreferredWidth(150);
         modeltable.getColumn(4).setPreferredWidth(150);
         modeltable.getColumn(5).setPreferredWidth(150);
@@ -221,7 +222,7 @@ public class ProdutoPrincipal extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -357,7 +358,7 @@ public class ProdutoPrincipal extends javax.swing.JFrame {
                 String precoformat;
                 precoformat = String.format("%.2f", prod.getPreco());
                 codigoformat = String.valueOf(prod.getCodigo());
-                modelo.addRow(new Object[]{codigoformat, prod.getDescricao(), precoformat, data.formataDataBD(prod.getData_alteracao()), data.formataDataBD(prod.getData_cadastro()), prod.getUsuario()});
+                modelo.addRow(new Object[]{codigoformat, prod.getDescricao(), NumberFormat.getCurrencyInstance().format(prod.getPreco()), data.formataDataBD(prod.getData_alteracao()), data.formataDataBD(prod.getData_cadastro()), prod.getUsuario()});
             }
             if (lenlist.equals("1")) {
                 lbLenlist.setText("A pesquisa retornou " + lenlist + " registro");
