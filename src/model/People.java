@@ -48,7 +48,7 @@ public abstract class People {
         this.endereco = endereco;
         this.bairro = bairro;
         this.numero = numero;
-        this.cep = cep;
+        this.cep = CEP;
         this.complemento = complemento;
         this.telefone = telefone;
         this.observacao = observacao;

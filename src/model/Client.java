@@ -23,9 +23,10 @@ public class Client extends People{
     public Client(){
         
     }
-    
+        
     public Client(String nome, String cpf, String celular, String email, String data_cadastro, String data_alteracao, String rg, String endereco, String bairro, String numero, String CEP, String complemento, String telefone, String notificawhats, String observacao, int codigo) {
         super(nome, cpf, celular, email, data_cadastro, data_alteracao, rg, endereco, bairro, numero, CEP, complemento, telefone, observacao, codigo);
+        setnotificaEmail(notificawhats);
     }
    
     public String getnotificaEmail() {

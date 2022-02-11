@@ -21,7 +21,7 @@ import java.util.Date;
  */
 public class data {
     public static String getdata(){
-        String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+        String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
         
         return timeStamp;
     }
@@ -48,6 +48,19 @@ public class data {
        try{
         SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String result = out.format(in.parse(data.toString()));
+        
+        return result;
+        
+       }catch(Exception ex){
+           return "";    
+        }
+   }
+   
+   public static String formatDateToEUA(String data){
+       try{
+        SimpleDateFormat in = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat out = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String result = out.format(in.parse(data.toString()));
         
         return result;

@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import model.User;
 import service.UserService;
 import view.Clientes.ClientePrincipal;
+import view.Produto.ProdutoPrincipal;
 
 /**
  *
@@ -653,7 +654,7 @@ public class PaginaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btLogarActionPerformed
 
     private void btServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btServicoActionPerformed
-        ServicoPrincipal tela = new ServicoPrincipal(user);
+        ProdutoPrincipal tela = new ProdutoPrincipal(user);
         tela.setVisible(true);
     }//GEN-LAST:event_btServicoActionPerformed
 

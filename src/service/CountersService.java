@@ -25,7 +25,7 @@ public class CountersService {
     static String webService = "http://localhost:8080/";
     static int codigoSucesso = 200;
     
-    public static Integer getId(String campo) throws Exception{
+    public static Integer getId(String campo) {
         String urlChamada=webService+"counters/"+campo;
         
         try {
@@ -41,7 +41,8 @@ public class CountersService {
             return Integer.parseInt(counters.getValor());
             
         } catch (Exception e) {
-            throw new Exception("ERRO: " + e);
+            e.printStackTrace();
+            return null;
         }
     }
 
