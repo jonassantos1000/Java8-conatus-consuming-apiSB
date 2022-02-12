@@ -31,7 +31,7 @@ public class OrderService {
         return order;
     }
 
-    public static List<Order> findCustom(String codOrder, String codClient, String nameClient, String cpfClient, String rgClient, String nameEmployee, String data, String limite) throws Exception {
+    public static List<Order> findCustom(String codOrder, String codClient, String nameClient, String cpfClient, String rgClient, String nameEmployee, String data, String limite) {
         if (limite.equals("0") || limite.isEmpty()) {
             limite = "999999999";
         }

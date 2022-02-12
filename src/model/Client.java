@@ -28,6 +28,10 @@ public class Client extends People{
         super(nome, cpf, celular, email, data_cadastro, data_alteracao, rg, endereco, bairro, numero, CEP, complemento, telefone, observacao, codigo);
         setnotificaEmail(notificawhats);
     }
+    
+    public Client(int codigo, String nome, String cpf, String RG,String email) {
+        this(nome,cpf,"",email,"","",RG,"","","","","","","","",codigo);      
+    }
    
     public String getnotificaEmail() {
         return notificaEmail;

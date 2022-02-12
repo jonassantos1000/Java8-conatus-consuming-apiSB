@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Order {
 
-    private Long codigo;
+    private Integer codigo;
     private String dataCadastro;
     private String dataAlteracao;
     private Client client;   
@@ -22,7 +22,7 @@ public class Order {
 
     }
 
-    public Order(Long codigo, String dataCadastro, String dataAlteracao, Double valorTotal) {
+    public Order(Integer codigo, String dataCadastro, String dataAlteracao, Double valorTotal) {
         super();
         this.codigo = codigo;
         this.dataCadastro = dataCadastro;
@@ -30,11 +30,11 @@ public class Order {
         this.valorTotal = valorTotal;
     }
 
-    public Long getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Long codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 

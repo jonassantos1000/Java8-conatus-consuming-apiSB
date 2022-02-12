@@ -6,10 +6,6 @@
 package view;
 
 import static util.Criptografia.criptografar;
-//import Util.Mascara;
-//import Util.ValidaNumeros;
-//import static Util.coalesce.coalesce;
-//import static Util.SendEmail.testaEnvio;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -18,6 +14,8 @@ import javax.swing.JOptionPane;
 import model.User;
 import service.UserService;
 import view.Clientes.ClientePrincipal;
+import view.Funcionarios.FuncionarioPrincipal;
+import view.Movimentacao.MovimentacaoPrincipal;
 import view.Produto.ProdutoPrincipal;
 
 /**

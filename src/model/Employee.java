@@ -21,7 +21,7 @@ public class Employee extends People {
         
     }
     
-    public Employee(String nome, String cpf, String celular, String email, String data_cadastro, String data_alteracao, String rg, String endereco, String bairro, String numero, String CEP, String complemento, String telefone, String observacao, int codigo) {
+    public Employee(int codigo,String nome, String cpf, String celular, String email, String data_cadastro, String data_alteracao, String rg, String endereco, String bairro, String numero, String CEP, String complemento, String telefone, String observacao) {
         super(nome, cpf, celular, email, data_cadastro, data_alteracao, rg, endereco, bairro, numero, CEP, complemento, telefone, observacao, codigo);
     }   
 

@@ -85,7 +85,7 @@ public class data {
    
     public static String formataDataFiltro(String data){
         try{
-            SimpleDateFormat in = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            SimpleDateFormat in = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");
             String result = out.format(in.parse(data.toString()));
 
