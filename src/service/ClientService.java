@@ -31,7 +31,7 @@ public class ClientService {
         return client;
     }
     
-    public static List<Client> findAll(String id, String nome, String cpf, String rg, String email, String limite) throws Exception {
+    public static List<Client> findAll(String id, String nome, String cpf, String rg, String email, String limite) {
         if (limite.equals("0") || limite.isEmpty()) {
             limite = "999999999";
         }

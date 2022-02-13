@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,19 +16,19 @@ public class Order {
     private String dataAlteracao;
     private Client client;   
     private Employee employee;
-    private Set<OrderItem> items = new HashSet<>();
+    private List<OrderItem> items = new ArrayList<>();
     private Double valorTotal;
 
     public Order() {
 
     }
 
-    public Order(Integer codigo, String dataCadastro, String dataAlteracao, Double valorTotal) {
-        super();
+    public Order(Integer codigo, String dataCadastro, String dataAlteracao, Double valorTotal,List<OrderItem> items) {
         this.codigo = codigo;
         this.dataCadastro = dataCadastro;
         this.dataAlteracao = dataAlteracao;
         this.valorTotal = valorTotal;
+        this.items=items;
     }
 
     public Integer getCodigo() {
@@ -70,7 +71,7 @@ public class Order {
         this.employee = employee;
     }
 
-    public Set<OrderItem> getItems() {
+    public List<OrderItem> getItems() {
         return items;
     }
 
