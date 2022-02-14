@@ -25,7 +25,7 @@ public class SettingService {
     static String webService = "http://localhost:8080/";
     static int codigoSucesso = 200;
     
-    public static Setting find() throws Exception {
+    public static Setting find() {
         String urlAPI = webService + "settings";
         try {
             URL url = new URL(urlAPI);

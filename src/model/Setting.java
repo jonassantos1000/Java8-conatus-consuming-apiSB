@@ -23,11 +23,10 @@ public class Setting {
 
     }
 
-    public Setting(String razaoSocial, String responsavelLegal, Long codigo, String cnpj, String email,
+    public Setting(String razaoSocial, String responsavelLegal, String cnpj, String email,
             String senha, String smtp, String portaSMTP, String sSL, String tLS, String mensagemPadrao, String data) {
         this.razaoSocial = razaoSocial;
         this.responsavelLegal = responsavelLegal;
-        this.codigo = codigo;
         this.cnpj = cnpj;
         this.email = email;
         this.senha = senha;

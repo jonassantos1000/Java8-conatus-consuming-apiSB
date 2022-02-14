@@ -34,12 +34,14 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
     
     public MovimentacaoPrincipal(User usuario) {
         initComponents();
+        txtDataInicial.setFormatterFactory(Mascara.getDataMask());
+        txtDataFinal.setFormatterFactory(Mascara.getDataMask());
         user = usuario;
         TableColumnModel modeltable = grid.getColumnModel();
         modeltable.getColumn(0).setPreferredWidth(80);
         modeltable.getColumn(1).setPreferredWidth(80);
         modeltable.getColumn(2).setPreferredWidth(200);
-        modeltable.getColumn(3).setPreferredWidth(80);
+        modeltable.getColumn(3).setPreferredWidth(110);
         modeltable.getColumn(4).setPreferredWidth(150);
         modeltable.getColumn(5).setPreferredWidth(130);
         modeltable.getColumn(6).setPreferredWidth(140);
@@ -70,13 +72,13 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         lbCodigo4 = new javax.swing.JLabel();
         lbCodigo5 = new javax.swing.JLabel();
         lbLenlist = new javax.swing.JLabel();
+        txtDataInicial = new javax.swing.JFormattedTextField();
         txtLimite = new javax.swing.JTextField();
         lbCodigo7 = new javax.swing.JLabel();
-        txtDataFinal = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         txtCodigoCliente = new javax.swing.JTextField();
+        txtDataFinal = new javax.swing.JFormattedTextField();
         lbCodigo8 = new javax.swing.JLabel();
-        txtDataInicial = new javax.swing.JTextField();
         btAlterar = new javax.swing.JButton();
         btIncluir = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -144,6 +146,7 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         lbLenlist.setForeground(new java.awt.Color(255, 255, 255));
         lbLenlist.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(lbLenlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 220, 30));
+        getContentPane().add(txtDataInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 220, -1));
 
         txtLimite.setText("500");
         getContentPane().add(txtLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, 220, -1));
@@ -152,7 +155,6 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         lbCodigo7.setForeground(new java.awt.Color(255, 255, 255));
         lbCodigo7.setText("Data Final");
         getContentPane().add(lbCodigo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, 30));
-        getContentPane().add(txtDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 220, 20));
 
         txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -161,18 +163,12 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 220, -1));
         getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 220, -1));
+        getContentPane().add(txtDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 220, -1));
 
         lbCodigo8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         lbCodigo8.setForeground(new java.awt.Color(255, 255, 255));
         lbCodigo8.setText("Cod. Cliente");
         getContentPane().add(lbCodigo8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
-
-        txtDataInicial.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDataInicialFocusLost(evt);
-            }
-        });
-        getContentPane().add(txtDataInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 220, -1));
 
         btAlterar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btAlterar.setForeground(new java.awt.Color(255, 255, 255));
@@ -381,11 +377,6 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         txtNome.setText(minuscula.toUpperCase());
     }//GEN-LAST:event_txtNomeFocusLost
 
-    private void txtDataInicialFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataInicialFocusLost
-        String minuscula = txtDataInicial.getText();
-        txtDataInicial.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtDataInicialFocusLost
-
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
         try {
             Object obj = grid.getValueAt(grid.getSelectedRow(), 0);
@@ -471,6 +462,7 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         txtNome.setText("");
         txtCodigoMovimentacao.setText("");
         txtCodigoCliente.setText("");
+        setDate();
         txtLimite.setText("500");
     }//GEN-LAST:event_btLimparActionPerformed
 
@@ -506,7 +498,7 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
     }
     
     private void setDate() {
-        txtDataInicial.setText(data.formataDataFiltro(getdata()));
+        txtDataInicial.setText(data.getDataMenos1Dia(data.formataDataFiltro(getdata())));
         txtDataFinal.setText(data.formataDataFiltro(getdata()));
     }
 
@@ -574,8 +566,8 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCodigoCliente;
     private javax.swing.JTextField txtCodigoMovimentacao;
-    private javax.swing.JTextField txtDataFinal;
-    private javax.swing.JTextField txtDataInicial;
+    private javax.swing.JFormattedTextField txtDataFinal;
+    private javax.swing.JFormattedTextField txtDataInicial;
     private javax.swing.JTextField txtLimite;
     private javax.swing.JTextField txtNome;
     private javax.swing.JFormattedTextField txtRG;

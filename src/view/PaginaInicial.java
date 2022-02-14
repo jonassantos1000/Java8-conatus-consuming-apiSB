@@ -11,8 +11,13 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import model.Setting;
 import model.User;
+import service.SettingService;
 import service.UserService;
+import util.Mascara;
+import static util.SendEmail.testaEnvio;
+import static util.coalesce.coalesce;
 import view.Clientes.ClientePrincipal;
 import view.Funcionarios.FuncionarioPrincipal;
 import view.Movimentacao.MovimentacaoPrincipal;
@@ -24,14 +29,16 @@ import view.Produto.ProdutoPrincipal;
  */
 public class PaginaInicial extends javax.swing.JFrame {
 
-    private boolean status=false;
+    private boolean status = false;
     String usuario;
     User user;
-    public PaginaInicial() {       
+
+    public PaginaInicial() {
         initComponents();
         bloquearAcesso();
         //txtPortaSMTP.setDocument(new ValidaNumeros());
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,6 +55,36 @@ public class PaginaInicial extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        ConfiguracoesGerais = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        btTestaEnvio = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        lbInformacaoEmpresa = new javax.swing.JLabel();
+        txtRazaoSocial = new javax.swing.JTextField();
+        lbRazaoSocial = new javax.swing.JLabel();
+        lbCNPJ = new javax.swing.JLabel();
+        txtCNPJ = new javax.swing.JFormattedTextField();
+        lbResponsavelLegal = new javax.swing.JLabel();
+        txtResponsavelLegal = new javax.swing.JTextField();
+        lbTitulo = new javax.swing.JLabel();
+        lbEmail = new javax.swing.JLabel();
+        lbSenhaEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        txtSenhaEmail = new javax.swing.JPasswordField();
+        lbPortaSMTP = new javax.swing.JLabel();
+        txtPortaSMTP = new javax.swing.JTextField();
+        lbSMTP = new javax.swing.JLabel();
+        txtSMTP = new javax.swing.JTextField();
+        cbTLS = new javax.swing.JCheckBox();
+        cbSSL = new javax.swing.JCheckBox();
+        lbMensagemPadraoEmail = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtMensagemPadraoEmail = new javax.swing.JTextArea();
+        btFecharConfig = new javax.swing.JButton();
+        btSalvarConfig = new javax.swing.JButton();
+        lbPainelPretoFundo = new javax.swing.JLabel();
+        lbImagemDeFundo = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         pnTitulo = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         pnMenu = new javax.swing.JPanel();
@@ -127,6 +164,234 @@ public class PaginaInicial extends javax.swing.JFrame {
             SuporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnSuporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        ConfiguracoesGerais.setMinimumSize(new java.awt.Dimension(645, 535));
+        ConfiguracoesGerais.setUndecorated(true);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btTestaEnvio.setText("Testar Configuração");
+        btTestaEnvio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTestaEnvioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btTestaEnvio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 160, -1));
+
+        jLayeredPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jLayeredPane1.setForeground(new java.awt.Color(255, 255, 255));
+
+        lbInformacaoEmpresa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbInformacaoEmpresa.setForeground(new java.awt.Color(255, 255, 255));
+        lbInformacaoEmpresa.setText("Informações da Empresa");
+
+        txtRazaoSocial.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lbRazaoSocial.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lbRazaoSocial.setForeground(new java.awt.Color(255, 255, 255));
+        lbRazaoSocial.setText("Razao social");
+
+        lbCNPJ.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lbCNPJ.setForeground(new java.awt.Color(255, 255, 255));
+        lbCNPJ.setText("CNPJ da Empresa");
+
+        txtCNPJ.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCNPJ.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCNPJFocusGained(evt);
+            }
+        });
+
+        lbResponsavelLegal.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lbResponsavelLegal.setForeground(new java.awt.Color(255, 255, 255));
+        lbResponsavelLegal.setText("Responsável legal");
+
+        txtResponsavelLegal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLayeredPane1.setLayer(lbInformacaoEmpresa, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtRazaoSocial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(lbRazaoSocial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(lbCNPJ, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtCNPJ, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(lbResponsavelLegal, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txtResponsavelLegal, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbInformacaoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 137, 137))
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(lbRazaoSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(lbCNPJ, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addComponent(lbResponsavelLegal, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtResponsavelLegal, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbInformacaoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbResponsavelLegal, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtResponsavelLegal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCNPJ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 490, 140));
+
+        lbTitulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTitulo.setText("Configurações Gerais");
+        jPanel1.add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 600, -1));
+
+        lbEmail.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lbEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lbEmail.setText("E-mail");
+        jPanel1.add(lbEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 40, 20));
+
+        lbSenhaEmail.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbSenhaEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lbSenhaEmail.setText("Senha");
+        jPanel1.add(lbSenhaEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, -1, 20));
+
+        txtEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 210, -1));
+
+        txtSenhaEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(txtSenhaEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, 140, -1));
+
+        lbPortaSMTP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbPortaSMTP.setForeground(new java.awt.Color(255, 255, 255));
+        lbPortaSMTP.setText("Porta SMTP");
+        jPanel1.add(lbPortaSMTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 80, 20));
+
+        txtPortaSMTP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(txtPortaSMTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 40, -1));
+
+        lbSMTP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbSMTP.setForeground(new java.awt.Color(255, 255, 255));
+        lbSMTP.setText("Endereço SMTP");
+        jPanel1.add(lbSMTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, 20));
+
+        txtSMTP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(txtSMTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 140, -1));
+
+        cbTLS.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbTLS.setForeground(new java.awt.Color(255, 255, 255));
+        cbTLS.setText("TLS");
+        cbTLS.setFocusPainted(false);
+        cbTLS.setOpaque(false);
+        cbTLS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTLSActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbTLS, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, -1, 20));
+
+        cbSSL.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbSSL.setForeground(new java.awt.Color(255, 255, 255));
+        cbSSL.setText("SSL");
+        cbSSL.setFocusPainted(false);
+        cbSSL.setOpaque(false);
+        cbSSL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSSLActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbSSL, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, 20));
+
+        lbMensagemPadraoEmail.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbMensagemPadraoEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lbMensagemPadraoEmail.setText("Mensagem Padrão para envio de E-mail");
+        jPanel1.add(lbMensagemPadraoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 280, -1));
+
+        txtMensagemPadraoEmail.setColumns(20);
+        txtMensagemPadraoEmail.setRows(5);
+        jScrollPane1.setViewportView(txtMensagemPadraoEmail);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 490, 130));
+
+        btFecharConfig.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btFecharConfig.setForeground(new java.awt.Color(255, 255, 255));
+        btFecharConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/botaocancelar6.png"))); // NOI18N
+        btFecharConfig.setText("Fechar");
+        btFecharConfig.setBorderPainted(false);
+        btFecharConfig.setContentAreaFilled(false);
+        btFecharConfig.setFocusPainted(false);
+        btFecharConfig.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btFecharConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFecharConfigActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btFecharConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, 30));
+
+        btSalvarConfig.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btSalvarConfig.setForeground(new java.awt.Color(255, 255, 255));
+        btSalvarConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/botaoefetivar5.png"))); // NOI18N
+        btSalvarConfig.setText("Salvar");
+        btSalvarConfig.setBorderPainted(false);
+        btSalvarConfig.setContentAreaFilled(false);
+        btSalvarConfig.setFocusPainted(false);
+        btSalvarConfig.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btSalvarConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarConfigActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btSalvarConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 470, 130, 30));
+
+        lbPainelPretoFundo.setForeground(new java.awt.Color(255, 255, 255));
+        lbPainelPretoFundo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbPainelPretoFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/PainelFundo.png"))); // NOI18N
+        lbPainelPretoFundo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lbPainelPretoFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 570, 500));
+
+        lbImagemDeFundo.setForeground(new java.awt.Color(255, 255, 255));
+        lbImagemDeFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/FundoTelaInicial.jpg"))); // NOI18N
+        lbImagemDeFundo.setText("jLabel24");
+        jPanel1.add(lbImagemDeFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 540));
+
+        javax.swing.GroupLayout ConfiguracoesGeraisLayout = new javax.swing.GroupLayout(ConfiguracoesGerais.getContentPane());
+        ConfiguracoesGerais.getContentPane().setLayout(ConfiguracoesGeraisLayout);
+        ConfiguracoesGeraisLayout.setHorizontalGroup(
+            ConfiguracoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        ConfiguracoesGeraisLayout.setVerticalGroup(
+            ConfiguracoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jLabel12.setText("jLabel12");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(825, 494));
@@ -547,8 +812,8 @@ public class PaginaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClienteActionPerformed
-            ClientePrincipal tela = new ClientePrincipal();
-            tela.setVisible(true);
+        ClientePrincipal tela = new ClientePrincipal();
+        tela.setVisible(true);
     }//GEN-LAST:event_btClienteActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
@@ -614,39 +879,37 @@ public class PaginaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btMovimentacaoActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        try{
+        try {
             String login = txtLogin.getText();
-            String senha= new String(txtSenha.getPassword());
+            String senha = new String(txtSenha.getPassword());
             //System.out.println("login:"+login+"senha:"+senha);
-            if(status==true){
+            if (status == true) {
                 txtLogin.setText("");
                 txtSenha.setText("");
                 btLogar.setText("Entrar");
                 bloquearAcesso();
-                status=false;
+                status = false;
 
-            }else if(status==false){            
+            } else if (status == false) {
                 String senhaCrip = (criptografar(senha));
-                User usuario = UserService.find(login);              
-                String senhaBanco= usuario.getSenha();
-                user=usuario;
-                
-                if (senhaBanco.equals(senhaCrip)==true){
+                User usuario = UserService.find(login);
+                String senhaBanco = usuario.getSenha();
+                user = usuario;
+
+                if (senhaBanco.equals(senhaCrip) == true) {
                     btLogar.setText("Sair");
                     btLogar.setSelected(true);
-                    this.usuario=login;
+                    this.usuario = login;
                     liberaAcesso();
-                    status=true;
-                }
-                else{
+                    status = true;
+                } else {
                     btLogar.setSelected(false);
                     JOptionPane.showMessageDialog(null, "Senha incorreta !");
-                    status=false;
+                    status = false;
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             bloquearAcesso();
-            JOptionPane.showMessageDialog(null, "Usuario invalido ! \n\nVerifique e tente acessar novamente !");
             e.printStackTrace();
         }
     }//GEN-LAST:event_btLogarActionPerformed
@@ -657,20 +920,20 @@ public class PaginaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btServicoActionPerformed
 
     private void txtLoginFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLoginFocusLost
-        String minuscula= txtLogin.getText();
+        String minuscula = txtLogin.getText();
         txtLogin.setText(minuscula.toUpperCase());
     }//GEN-LAST:event_txtLoginFocusLost
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-        if(evt.getKeyCode() == evt.VK_ENTER){
-           btLogar.requestFocus(true);
-           btLogar.doClick();
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            btLogar.requestFocus(true);
+            btLogar.doClick();
         }
     }//GEN-LAST:event_txtSenhaKeyPressed
 
     private void btRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioActionPerformed
-        RelatoriosPrincipal tela = new RelatoriosPrincipal();
-        tela.setVisible(true);
+//        RelatoriosPrincipal tela = new RelatoriosPrincipal();
+     //   tela.setVisible(true);
     }//GEN-LAST:event_btRelatorioActionPerformed
 
     private void btSuporteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSuporteMouseEntered
@@ -688,52 +951,92 @@ public class PaginaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btSuporteActionPerformed
 
     private void btConfiguracoesGeraisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfiguracoesGeraisActionPerformed
-
         new Thread() {
             @Override
-                public void run() {
-                    Configuracao config = new Configuracao();
-                    txtRazaoSocial.setText(config.pesquisar().getRazaoSocial());
-                    txtResponsavelLegal.setText(config.pesquisar().getResponsavelLegal());
-                    txtCNPJ.setText(config.pesquisar().getCnpj());
-                    txtEmail.setText(config.pesquisar().getEmail());
-                    txtSenhaEmail.setText(config.pesquisar().getSenha());
-                    txtSMTP.setText(config.pesquisar().getSmtp());
-                    txtPortaSMTP.setText(config.pesquisar().getPortaSMTP());
-                    txtMensagemPadraoEmail.setText(config.pesquisar().getMensagemPadrao());
-                    if(config.pesquisar().getSSL().equals("T")){
-                        cbSSL.setSelected(true);
-                    }else{
-                        cbSSL.setSelected(false); 
-                    }
-
-                    if(config.pesquisar().getTLS().equals("T")){
-                        cbTLS.setSelected(true);
-                    }else{
-                        cbTLS.setSelected(false); 
-                    }  
+            public void run() {
+                Setting config = SettingService.find();
+                txtRazaoSocial.setText(config.getRazaoSocial());
+                txtResponsavelLegal.setText(config.getResponsavelLegal());
+                txtCNPJ.setText(config.getCnpj());
+                txtEmail.setText(config.getEmail());
+                txtSenhaEmail.setText(config.getSenha());
+                txtSMTP.setText(config.getSmtp());
+                txtPortaSMTP.setText(config.getPortaSMTP());
+                txtMensagemPadraoEmail.setText(config.getMensagemPadrao());
+                if (config.getSSL().equals("T")) {
+                    cbSSL.setSelected(true);
+                } else {
+                    cbSSL.setSelected(false);
                 }
+
+                if (config.getTLS().equals("T")) {
+                    cbTLS.setSelected(true);
+                } else {
+                    cbTLS.setSelected(false);
+                }
+            }
         }.start();
-        
+
         ConfiguracoesGerais.setModal(true);
         ConfiguracoesGerais.setLocationRelativeTo(null);
         ConfiguracoesGerais.setVisible(true);
-                
+
     }//GEN-LAST:event_btConfiguracoesGeraisActionPerformed
-           
-    private static void setButton(JButton botao){
-        botao.setBackground(new Color(58,58,58));
-        botao.setFont(new Font("Trebuchet MS",1,19));
+
+    private void btTestaEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTestaEnvioActionPerformed
+        testaEnvio();
+    }//GEN-LAST:event_btTestaEnvioActionPerformed
+
+    private void txtCNPJFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCNPJFocusGained
+        txtCNPJ.setFormatterFactory(Mascara.getCpfMask());
+    }//GEN-LAST:event_txtCNPJFocusGained
+
+    private void cbTLSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTLSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbTLSActionPerformed
+
+    private void cbSSLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSSLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbSSLActionPerformed
+
+    private void btFecharConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharConfigActionPerformed
+        ConfiguracoesGerais.setVisible(false);
+    }//GEN-LAST:event_btFecharConfigActionPerformed
+
+    private void btSalvarConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarConfigActionPerformed
+        try {
+            String razaoSocial = coalesce(txtRazaoSocial.getText());
+            String responsavelLegal = coalesce(txtResponsavelLegal.getText());
+            String cnpj = coalesce(txtCNPJ.getText());
+            String email = coalesce(txtEmail.getText());
+            String senha = new String(txtSenhaEmail.getPassword());
+            String smtp = coalesce(txtSMTP.getText());
+            String portaSMTP = coalesce(txtPortaSMTP.getText());
+            String SSL = cbSSL.isSelected() == true ? "T" : "F";
+            String TLS = cbTLS.isSelected() == true ? "T" : "F";
+            String mensagemPadrao = coalesce(txtMensagemPadraoEmail.getText());
+            String dataAlteracao = util.data.formatDateToEUA(util.data.getdata());
+            
+            Setting config = new Setting(razaoSocial, responsavelLegal, cnpj, email, senha, smtp, portaSMTP, SSL, TLS, mensagemPadrao, dataAlteracao);
+            SettingService.update(config);           
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btSalvarConfigActionPerformed
+
+    private static void setButton(JButton botao) {
+        botao.setBackground(new Color(58, 58, 58));
+        botao.setFont(new Font("Trebuchet MS", 1, 19));
     }
-    
-    private static void resetButton(JButton botao){
-        botao.setBackground(new Color(0,0,0));
-        botao.setFont(new Font("Trebuchet MS",1,18));
+
+    private static void resetButton(JButton botao) {
+        botao.setBackground(new Color(0, 0, 0));
+        botao.setFont(new Font("Trebuchet MS", 1, 18));
     }
-    
-    private void bloquearAcesso(){
+
+    private void bloquearAcesso() {
         txtLogin.setEnabled(true);
-        txtSenha.setEnabled(true);      
+        txtSenha.setEnabled(true);
         btCliente.setEnabled(false);
         btFuncionario.setEnabled(false);
         btServico.setEnabled(false);
@@ -743,8 +1046,8 @@ public class PaginaInicial extends javax.swing.JFrame {
         btLogar.setSelected(false);
         txtLogin.requestFocus(true);
     }
-    
-    private void liberaAcesso(){
+
+    private void liberaAcesso() {
         txtLogin.setEnabled(false);
         txtSenha.setEnabled(false);
         btCliente.setEnabled(true);
@@ -794,19 +1097,26 @@ public class PaginaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog ConfiguracoesGerais;
     private javax.swing.JDialog Suporte;
     private javax.swing.JButton btCliente;
     private javax.swing.JButton btConfiguracoesGerais;
+    private javax.swing.JButton btFecharConfig;
     private javax.swing.JButton btFuncionario;
     private javax.swing.JToggleButton btLogar;
     private javax.swing.JButton btMovimentacao;
     private javax.swing.JButton btRelatorio;
     private javax.swing.JButton btSair;
+    private javax.swing.JButton btSalvarConfig;
     private javax.swing.JButton btServico;
     private javax.swing.JButton btSuporte;
+    private javax.swing.JButton btTestaEnvio;
+    private javax.swing.JCheckBox cbSSL;
+    private javax.swing.JCheckBox cbTLS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -820,15 +1130,38 @@ public class PaginaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbCNPJ;
+    private javax.swing.JLabel lbEmail;
+    private javax.swing.JLabel lbImagemDeFundo;
+    private javax.swing.JLabel lbInformacaoEmpresa;
     private javax.swing.JLabel lbLogin;
+    private javax.swing.JLabel lbMensagemPadraoEmail;
     private javax.swing.JLabel lbMenu;
+    private javax.swing.JLabel lbPainelPretoFundo;
+    private javax.swing.JLabel lbPortaSMTP;
+    private javax.swing.JLabel lbRazaoSocial;
+    private javax.swing.JLabel lbResponsavelLegal;
+    private javax.swing.JLabel lbSMTP;
     private javax.swing.JLabel lbSenha;
+    private javax.swing.JLabel lbSenhaEmail;
+    private javax.swing.JLabel lbTitulo;
     private view.painelImagemFundo painelImagemFundo1;
     private javax.swing.JPanel pnCentral;
     private javax.swing.JPanel pnMenu;
     private javax.swing.JPanel pnSuporte;
     private javax.swing.JPanel pnTitulo;
+    private javax.swing.JFormattedTextField txtCNPJ;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLogin;
+    private javax.swing.JTextArea txtMensagemPadraoEmail;
+    private javax.swing.JTextField txtPortaSMTP;
+    private javax.swing.JTextField txtRazaoSocial;
+    private javax.swing.JTextField txtResponsavelLegal;
+    private javax.swing.JTextField txtSMTP;
     private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JPasswordField txtSenhaEmail;
     // End of variables declaration//GEN-END:variables
 }
