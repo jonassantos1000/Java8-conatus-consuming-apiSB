@@ -5,6 +5,8 @@
  */
 package view.Movimentacao;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.NumberFormat;
 import java.util.List;
 import javax.swing.JLabel;
@@ -501,7 +503,7 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         txtDataInicial.setText(data.getDataMenos1Dia(data.formataDataFiltro(getdata())));
         txtDataFinal.setText(data.formataDataFiltro(getdata()));
     }
-
+    
     /**
      * @param args the command line arguments
      */
