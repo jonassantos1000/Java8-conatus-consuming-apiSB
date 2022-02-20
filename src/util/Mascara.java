@@ -31,6 +31,7 @@ public class Mascara {
         try{
             mask = new MaskFormatter("##.###.###-#");
             mask.setPlaceholderCharacter('_');
+            mask.setAllowsInvalid(true);
         }catch (ParseException ex){
             return null;
         }

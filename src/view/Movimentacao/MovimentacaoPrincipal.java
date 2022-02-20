@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.NumberFormat;
 import java.util.List;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -309,12 +310,18 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtCPFFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCPFFocusLost(evt);
+            }
         });
         getContentPane().add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 220, -1));
 
         txtRG.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtRGFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRGFocusLost(evt);
             }
         });
         getContentPane().add(txtRG, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 220, -1));
@@ -459,8 +466,8 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRGFocusGained
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-        txtCPF.setText("");
-        txtRG.setText("");
+        txtCPF.setText(null);
+        txtRG.setText(null);
         txtNome.setText("");
         txtCodigoMovimentacao.setText("");
         txtCodigoCliente.setText("");
@@ -492,6 +499,14 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void txtCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCPFFocusLost
+        txtCPF.setFocusLostBehavior(JFormattedTextField.COMMIT);
+    }//GEN-LAST:event_txtCPFFocusLost
+
+    private void txtRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRGFocusLost
+        txtRG.setFocusLostBehavior(JFormattedTextField.COMMIT);
+    }//GEN-LAST:event_txtRGFocusLost
     
     private static void centralizar(JTable table, int column) {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();

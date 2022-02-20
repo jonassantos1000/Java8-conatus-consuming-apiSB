@@ -16,6 +16,7 @@ import model.Employee;
 import service.EmployeeService;
 import util.Mascara;
 import util.ValidaNumeros;
+import util.coalesce;
 import util.data;
 
 /**
@@ -373,8 +374,8 @@ public class FuncionarioPrincipal extends javax.swing.JFrame {
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         int codigo = txtCodigo.getText().equals("") ? 0 : Integer.parseInt(txtCodigo.getText());
         String nome = txtNome.getText();
-        String cpf = txtCPF.getText();
-        String rg = txtRG.getText();
+        String cpf = coalesce.coalesceMascara(txtCPF.getText());
+        String rg = coalesce.coalesceMascara(txtRG.getText());
         String email = txtEmail.getText();
         String limite = txtLimite.getText();
         List<Employee> select = EmployeeService.findAll(String.valueOf(codigo), nome, cpf, rg, email, limite);

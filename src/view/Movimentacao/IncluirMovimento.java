@@ -1026,7 +1026,7 @@ public class IncluirMovimento extends javax.swing.JFrame {
 
             //Verifica se o cliente quer receber e-mail do comprovante conforme marcado no seu cadastro.
             cliente = ClientService.findById(String.valueOf(codCliente));
-            if (cliente.getnotificaEmail().equals("T")) {
+            if (cliente.getnotificaEmail()!= null && cliente.getnotificaEmail().equals("T")) {
                 if ((cliente.getEmail() == null)) {
                 } else {
 
@@ -1249,11 +1249,11 @@ public class IncluirMovimento extends javax.swing.JFrame {
         try {
             int indice = grid.getSelectedRow();
             setIndice(indice);
-            int codigo = Integer.parseInt(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 0)));
+            Integer codigo = Integer.parseInt(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 0)));
             String descricao = String.valueOf(grid.getValueAt(grid.getSelectedRow(), 1));
-            int qtde = Integer.parseInt(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 2)));
-            double valor = Double.valueOf(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 3)).replace(",", ".").replace("R$", ""));
-            double total = Double.valueOf(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 4)).replace(",", "."));
+            Integer qtde = Integer.parseInt(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 2)));
+            Double valor = Double.valueOf(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 3)).replace(",", "."));
+            Double total = Double.valueOf(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 4)).replace(",", "."));
 
             txtCodigoAltProd.setText(String.valueOf(codigo));
             txtDescricaoAltProd.setText(descricao);
@@ -1483,14 +1483,12 @@ public class IncluirMovimento extends javax.swing.JFrame {
         try {
             List<OrderItem> listagem = listProduto;
             for (OrderItem mov : listagem) {
-                String codigoformat;
-                String valorFormat;
-                String totalFormat;
-                codigoformat = String.valueOf(mov.getProduct().getCodigo());
-                valorFormat = String.format("%.2f", mov.getPrice());
-                totalFormat = String.format("%.2f", mov.getPrice() * mov.getQuantity());
-                modelo.addRow(new Object[]{codigoformat, mov.getProduct().getDescricao(), mov.getQuantity(), NumberFormat.getCurrencyInstance().format(mov.getPrice()), NumberFormat.getCurrencyInstance().format(mov.getPrice() * mov.getQuantity())});
+                String codigoformat = String.valueOf(mov.getProduct().getCodigo());
+                String valorFormat= String.format("%.2f", mov.getPrice());
+                String totalFormat= String.format("%.2f", mov.getPrice() * mov.getQuantity());
 
+                modelo.addRow(new Object[]{codigoformat, mov.getProduct().getDescricao(), mov.getQuantity(), valorFormat, totalFormat});
+                
                 valorTotalVenda = valorTotalVenda + Double.parseDouble(totalFormat.replace(",", "."));
             }
 

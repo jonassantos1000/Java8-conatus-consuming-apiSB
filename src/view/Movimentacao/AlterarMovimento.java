@@ -990,7 +990,7 @@ public class AlterarMovimento extends javax.swing.JFrame {
             Integer codigo = Integer.parseInt(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 0)));
             String descricao = String.valueOf(grid.getValueAt(grid.getSelectedRow(), 1));
             Integer qtde = Integer.parseInt(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 2)));
-            Double valor = Double.valueOf(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 3)).replace(",", ".").replace("R$", ""));
+            Double valor = Double.valueOf(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 3)).replace(",", "."));
             Double total = Double.valueOf(String.valueOf(grid.getValueAt(grid.getSelectedRow(), 4)).replace(",", "."));
 
             txtCodigoAltProd.setText(String.valueOf(codigo));
@@ -1082,7 +1082,7 @@ public class AlterarMovimento extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Insira pelo menos 1 serviço !");
             } else {
                 Integer codigoMovimentacao = Integer.parseInt(cod_movimentacao.getText());
-                String dataCadastro = txtData.getText();
+                String dataCadastro = data.formatDateToEUA(txtData.getText());
                 Integer codCliente = Integer.parseInt(txtCodigoCliente.getText());
                 Integer codFuncionario = Integer.parseInt(txtCodigoFuncionario.getText());
                 Double totalVenda = nf(txtValorTotalVenda.getText()).doubleValue();
@@ -1399,12 +1399,10 @@ public class AlterarMovimento extends javax.swing.JFrame {
         try {
             List<OrderItem> listagem = listProd;
             for (OrderItem mov : listagem) {
-                String codigoformat;
-                String valorFormat;
-                String totalFormat;
-                codigoformat = String.valueOf(mov.getProduct().getCodigo());
-                valorFormat = String.format("%.2f", mov.getPrice());
-                totalFormat = String.format("%.2f", mov.getPrice() * mov.getQuantity());
+                String codigoformat = String.valueOf(mov.getProduct().getCodigo());
+                String valorFormat= String.format("%.2f", mov.getPrice());
+                String totalFormat= String.format("%.2f", mov.getPrice() * mov.getQuantity());
+
                 modelo.addRow(new Object[]{codigoformat, mov.getProduct().getDescricao(), mov.getQuantity(), valorFormat, totalFormat});
 
                 valorTotalVenda = valorTotalVenda + Double.parseDouble(totalFormat.replace(",", "."));
