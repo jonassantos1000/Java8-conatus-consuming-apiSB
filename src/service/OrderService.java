@@ -39,30 +39,30 @@ public class OrderService {
 
         urlAPI += "limite=" + limite;
 
-        if (codOrder != null & codOrder != "") {
+        if (codOrder != null & !"0".equals(codOrder)) {
             urlAPI += "&codOrder=" + codOrder;
         }
 
-        if (codClient != null & codClient != "") {
+        if (codClient != null & !"0".equals(codClient)) {
             urlAPI += "&codClient=" + codClient;
         }
 
-        if (nameClient != null & nameClient != "") {
+        if (nameClient != null & !"".equals(nameClient)) {
             urlAPI += "&nameClient=" + nameClient;
         }
-        if (cpfClient != null & cpfClient != "") {
+        if (cpfClient != null & !"".equals(cpfClient)) {
             urlAPI += "&cpfClient=" + cpfClient;
         }
 
-        if (rgClient != null & rgClient != "") {
+        if (rgClient != null & !"".equals(rgClient)) {
             urlAPI += "&rgClient=" + rgClient;
         }
 
-        if (nameEmployee != null & nameEmployee != "") {
+        if (nameEmployee != null & !"".equals(nameEmployee)) {
             urlAPI += "&nameEmployee=" + nameEmployee;
         }
 
-        if (data != null && !"".equals(data) && !";".equals(data)) {
+        if (data != null && !"".equals(data) && !"|".equals(data)) {
             try {
                 urlAPI += "&data=" + data;
             } catch (Exception e) {

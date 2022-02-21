@@ -1000,7 +1000,7 @@ public class IncluirMovimento extends javax.swing.JFrame {
             }
 
             Integer codigoMovimentacao = Integer.parseInt(cod_movimentacao.getText());
-            String dataCadastro = util.data.formatDateToEUA(txtData.getText());
+            String dataCadastro = util.data.formatTimeStampToEUA(txtData.getText());
             Integer codCliente = Integer.parseInt(txtCodigoCliente.getText());
             Integer codFuncionario = Integer.parseInt(txtCodigoFuncionario.getText());
             Double totalVenda = nf(txtValorTotalVenda.getText()).doubleValue();

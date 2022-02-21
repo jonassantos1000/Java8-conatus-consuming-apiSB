@@ -243,13 +243,13 @@ public class AlterarServico extends javax.swing.JFrame {
             } else {
                 Integer codigo = Integer.parseInt(cod_servico.getText());
                 String descricao = coalesce(txtDescricao.getText());
-                String data = util.data.formatDateToEUA(txtData.getText());
+                String data = util.data.formatTimeStampToEUA(txtData.getText());
                 Double preco = 0.0;
                 String cbInativo = ckInativo.isSelected() == false ? "F" : "T";
                 preco = nf(coalesce(txtValor.getText())).doubleValue();
                 String observacao = coalesce(txtObservacoes.getText());
                 String usuario = user.getUsuario();
-                String dataAlteracao = util.data.formatDateToEUA(util.data.getdata());
+                String dataAlteracao = util.data.formatTimeStampToEUA(util.data.getdata());
 
                 Product alterarServico = new Product(codigo, descricao, preco, data,dataAlteracao, usuario, observacao, cbInativo);
                 ProductService.update(codigo,alterarServico);

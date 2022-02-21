@@ -71,10 +71,23 @@ public class data {
         }
     }
 
-    public static String formatDateToEUA(String data) {
+    public static String formatTimeStampToEUA(String data) {
         try {
             SimpleDateFormat in = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             SimpleDateFormat out = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String result = out.format(in.parse(data.toString()));
+
+            return result;
+
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+        public static String formatDateToEUA(String data) {
+        try {
+            SimpleDateFormat in = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat out = new SimpleDateFormat("yyyy-MM-dd");
             String result = out.format(in.parse(data.toString()));
 
             return result;

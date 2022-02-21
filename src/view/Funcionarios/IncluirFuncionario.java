@@ -411,7 +411,7 @@ public class IncluirFuncionario extends javax.swing.JFrame {
             String RG = coalesceMascara(txtRG.getText());
             String endereco = coalesce(txtEndereco.getText());
             String CEP = coalesceMascara(txtCEP.getText());
-            String data =  util.data.formatDateToEUA(txtData.getText());
+            String data =  util.data.formatTimeStampToEUA(txtData.getText());
             String numero = coalesce(txtNumero.getText());
             String bairro = coalesce(txtBairro.getText());
             String complemento = coalesce(txtComplemento.getText());

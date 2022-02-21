@@ -430,7 +430,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
             String RG = coalesceMascara(txtRG.getText());
             String endereco = coalesce(txtEndereco.getText());
             String CEP = coalesceMascara(txtCEP.getText());
-            String data = util.data.formatDateToEUA(txtData.getText());
+            String data = util.data.formatTimeStampToEUA(txtData.getText());
             String numero = coalesce(txtNumero.getText());
             String bairro = coalesce(txtBairro.getText());
             String complemento = coalesce(txtComplemento.getText());
@@ -438,7 +438,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
             String telefone = coalesceMascara(txtTelefone.getText());
             String celular = coalesceMascara(txtCelular.getText());
             String observacao = coalesce(txtObservacao.getText());
-            String dataAlteracao = util.data.formatDateToEUA(util.data.getdata());
+            String dataAlteracao = util.data.formatTimeStampToEUA(util.data.getdata());
             try {
                 Employee alterarFuncionario = new Employee(codigo, nome, CPF, celular, email, data, dataAlteracao, RG, endereco, bairro, numero, CEP, complemento, telefone, observacao);
                 EmployeeService.update(alterarFuncionario, codigo);

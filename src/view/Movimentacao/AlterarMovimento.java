@@ -1077,11 +1077,11 @@ public class AlterarMovimento extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Insira pelo menos 1 serviço !");
             } else {
                 Integer codigoMovimentacao = Integer.parseInt(cod_movimentacao.getText());
-                String dataCadastro = data.formatDateToEUA(txtData.getText());
+                String dataCadastro = data.formatTimeStampToEUA(txtData.getText());
                 Integer codCliente = Integer.parseInt(txtCodigoCliente.getText());
                 Integer codFuncionario = Integer.parseInt(txtCodigoFuncionario.getText());
                 Double totalVenda = nf(txtValorTotalVenda.getText()).doubleValue();
-                String dataAlteracao = util.data.formatDateToEUA(util.data.getdata());
+                String dataAlteracao = util.data.formatTimeStampToEUA(util.data.getdata());
                 
                 Client cliente = new Client();
                 cliente.setCodigo(codCliente);

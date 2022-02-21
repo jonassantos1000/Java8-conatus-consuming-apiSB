@@ -1015,7 +1015,7 @@ public class PaginaInicial extends javax.swing.JFrame {
             String SSL = cbSSL.isSelected() == true ? "T" : "F";
             String TLS = cbTLS.isSelected() == true ? "T" : "F";
             String mensagemPadrao = coalesce(txtMensagemPadraoEmail.getText());
-            String dataAlteracao = util.data.formatDateToEUA(util.data.getdata());
+            String dataAlteracao = util.data.formatTimeStampToEUA(util.data.getdata());
             
             Setting config = new Setting(razaoSocial, responsavelLegal, cnpj, email, senha, smtp, portaSMTP, SSL, TLS, mensagemPadrao, dataAlteracao);
             SettingService.update(config);           

@@ -22,6 +22,7 @@ import service.OrderService;
 import util.Mascara;
 import util.ValidaNumeros;
 import util.data;
+import static util.data.formatDateToEUA;
 import static util.data.getdata;
 
 /**
@@ -400,10 +401,10 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         String nome = txtNome.getText();
         String cpf = util.coalesce.coalesceMascara(txtCPF.getText());
         String rg = util.coalesce.coalesceMascara(txtRG.getText());
-        String DataInicial = txtDataInicial.getText();
-        String DataFinal = txtDataFinal.getText();
+        String DataInicial = formatDateToEUA(txtDataInicial.getText());
+        String DataFinal = formatDateToEUA(txtDataFinal.getText());
         String limite = txtLimite.getText();
-        String dataConcatenada = DataInicial + ";" + DataFinal; //O programa sempre irá setar a data inicial e final com a data do dia que esta sendo realizado a consulta
+        String dataConcatenada = DataInicial + "x" + DataFinal; //O programa sempre irá setar a data inicial e final com a data do dia que esta sendo realizado a consulta
         List<Order> movimentacao = OrderService.findCustom(String.valueOf(codigoMovimentacao), String.valueOf(codigoCliente), nome, cpf, rg, "", dataConcatenada.replace("/", "."), limite);
         
         DefaultTableModel modelo = (DefaultTableModel) grid.getModel();
