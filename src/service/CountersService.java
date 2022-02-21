@@ -22,7 +22,7 @@ public class CountersService {
     String valor;
     String nome;
     
-    static String webService = "http://localhost:8080/";
+    static String webService = util.DataSource.getDataSource()+"/";
     static int codigoSucesso = 200;
     
     public static Integer getId(String campo) {

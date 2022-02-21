@@ -22,7 +22,7 @@ import model.Client;
  */
 public class ClientService {
 
-    static String webService = "http://localhost:8080/";
+    static String webService = util.DataSource.getDataSource()+"/";
     static int codigoSucesso = 200;
 
     public static Client findById(String id) throws Exception {

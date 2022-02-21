@@ -114,12 +114,6 @@ public class ProdutoPrincipal extends javax.swing.JFrame {
 
         txtLimite.setText("500");
         getContentPane().add(txtLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 220, -1));
-
-        txtDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDescricaoFocusLost(evt);
-            }
-        });
         getContentPane().add(txtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 220, -1));
 
         btAlterar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -309,12 +303,6 @@ public class ProdutoPrincipal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1019, 670));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtDescricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescricaoFocusLost
-        String minuscula = txtDescricao.getText();
-        txtDescricao.setText(minuscula.toUpperCase());
-
-    }//GEN-LAST:event_txtDescricaoFocusLost
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
         try {

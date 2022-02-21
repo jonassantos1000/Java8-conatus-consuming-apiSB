@@ -235,11 +235,6 @@ public class IncluirMovimento extends javax.swing.JFrame {
         });
         PesquisaProduto.getContentPane().add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 110, 40));
 
-        txtDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDescricaoFocusLost(evt);
-            }
-        });
         txtDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDescricaoActionPerformed(evt);
@@ -591,11 +586,6 @@ public class IncluirMovimento extends javax.swing.JFrame {
         });
         PesquisarCliente.getContentPane().add(btBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 120, 40));
 
-        txtBuscaNomeCliente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtBuscaNomeClienteFocusLost(evt);
-            }
-        });
         txtBuscaNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscaNomeClienteActionPerformed(evt);
@@ -1313,11 +1303,6 @@ public class IncluirMovimento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalProdAltFocusLost
 
-    private void txtDescricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescricaoFocusLost
-        String minuscula = txtDescricao.getText();
-        txtDescricao.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtDescricaoFocusLost
-
     private void cbClienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbClienteItemStateChanged
         String codigoNome = cbCliente.getSelectedItem().toString();
         setCodigoCliente(codigoNome);
@@ -1411,11 +1396,6 @@ public class IncluirMovimento extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btBuscar1ActionPerformed
-
-    private void txtBuscaNomeClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscaNomeClienteFocusLost
-        String minuscula = txtBuscaNomeCliente.getText();
-        txtBuscaNomeCliente.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtBuscaNomeClienteFocusLost
 
     private void txtBuscaNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaNomeClienteActionPerformed
         // TODO add your handling code here:

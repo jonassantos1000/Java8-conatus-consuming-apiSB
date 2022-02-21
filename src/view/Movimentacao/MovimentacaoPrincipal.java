@@ -158,12 +158,6 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         lbCodigo7.setForeground(new java.awt.Color(255, 255, 255));
         lbCodigo7.setText("Data Final");
         getContentPane().add(lbCodigo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, 30));
-
-        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNomeFocusLost(evt);
-            }
-        });
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 220, -1));
         getContentPane().add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 220, -1));
         getContentPane().add(txtDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 220, -1));
@@ -380,11 +374,6 @@ public class MovimentacaoPrincipal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1020, 675));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
-        String minuscula = txtNome.getText();
-        txtNome.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtNomeFocusLost
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
         try {

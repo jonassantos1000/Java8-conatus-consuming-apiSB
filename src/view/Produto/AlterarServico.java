@@ -125,11 +125,6 @@ public class AlterarServico extends javax.swing.JFrame {
         txtDescricao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDescricao.setCaretColor(new java.awt.Color(255, 255, 255));
         txtDescricao.setOpaque(false);
-        txtDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDescricaoFocusLost(evt);
-            }
-        });
         getContentPane().add(txtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 460, -1));
 
         lbcodigo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -240,11 +235,6 @@ public class AlterarServico extends javax.swing.JFrame {
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
-
-    private void txtDescricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescricaoFocusLost
-        String minuscula = txtDescricao.getText();
-        txtDescricao.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtDescricaoFocusLost
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         try {

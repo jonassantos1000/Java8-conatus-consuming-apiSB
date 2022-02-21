@@ -22,7 +22,7 @@ import model.Product;
  */
 public class ProductService {
 
-    static String webService = "http://localhost:8080/";
+    static String webService = util.DataSource.getDataSource()+"/";
     static int codigoSucesso = 200;
 
     public static Product findByID(String id, String inativo){

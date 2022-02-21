@@ -119,11 +119,6 @@ public class IncluirFuncionario extends javax.swing.JFrame {
         txtnome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtnome.setCaretColor(new java.awt.Color(255, 255, 255));
         txtnome.setOpaque(false);
-        txtnome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtnomeFocusLost(evt);
-            }
-        });
         getContentPane().add(txtnome, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 290, -1));
 
         txtNumero.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -162,11 +157,6 @@ public class IncluirFuncionario extends javax.swing.JFrame {
         txtComplemento.setAutoscrolls(false);
         txtComplemento.setCaretColor(new java.awt.Color(255, 255, 255));
         txtComplemento.setOpaque(false);
-        txtComplemento.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtComplementoFocusLost(evt);
-            }
-        });
         getContentPane().add(txtComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 230, 20));
 
         txtCPF.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,11 +176,6 @@ public class IncluirFuncionario extends javax.swing.JFrame {
         txtEndereco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEndereco.setCaretColor(new java.awt.Color(255, 255, 255));
         txtEndereco.setOpaque(false);
-        txtEndereco.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEnderecoFocusLost(evt);
-            }
-        });
         getContentPane().add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 270, -1));
 
         Numero.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -209,11 +194,6 @@ public class IncluirFuncionario extends javax.swing.JFrame {
         txtBairro.setText(" ");
         txtBairro.setCaretColor(new java.awt.Color(255, 255, 255));
         txtBairro.setOpaque(false);
-        txtBairro.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtBairroFocusLost(evt);
-            }
-        });
         getContentPane().add(txtBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 110, 20));
 
         lbCEP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -280,11 +260,6 @@ public class IncluirFuncionario extends javax.swing.JFrame {
         txtEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEmail.setCaretColor(new java.awt.Color(255, 255, 255));
         txtEmail.setOpaque(false);
-        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEmailFocusLost(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -425,26 +400,6 @@ public class IncluirFuncionario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
-    private void txtnomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtnomeFocusLost
-        String minuscula= txtnome.getText();
-        txtnome.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtnomeFocusLost
-
-    private void txtComplementoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtComplementoFocusLost
-        String minuscula= txtComplemento.getText();
-        txtComplemento.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtComplementoFocusLost
-
-    private void txtEnderecoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnderecoFocusLost
-        String minuscula= txtEndereco.getText();
-        txtEndereco.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtEnderecoFocusLost
-
-    private void txtBairroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBairroFocusLost
-        String minuscula= txtBairro.getText();
-        txtBairro.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtBairroFocusLost
-
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if("".equals(txtnome.getText()) ){
             JOptionPane.showMessageDialog(null, "O campo Nome esta em branco, corrija e tente novamente");
@@ -474,11 +429,6 @@ public class IncluirFuncionario extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btSalvarActionPerformed
-
-    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
-        String minuscula= txtEmail.getText();
-        txtEmail.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtEmailFocusLost
 
     private void txtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCelularActionPerformed
         // TODO add your handling code here:

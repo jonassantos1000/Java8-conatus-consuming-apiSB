@@ -73,7 +73,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtDescricao">
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDescricaoFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescricaoActionPerformed"/>
           </Events>
           <Constraints>
@@ -472,6 +471,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescricaoAltProdActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="203" y="46" width="200" height="-1"/>
@@ -781,7 +783,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtBuscaNomeCliente">
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtBuscaNomeClienteFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBuscaNomeClienteActionPerformed"/>
           </Events>
           <Constraints>

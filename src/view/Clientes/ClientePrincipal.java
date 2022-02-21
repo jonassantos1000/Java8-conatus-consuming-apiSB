@@ -121,19 +121,7 @@ public class ClientePrincipal extends javax.swing.JFrame {
 
         txtLimite.setText("500");
         getContentPane().add(txtLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 220, -1));
-
-        txtNome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNomeFocusLost(evt);
-            }
-        });
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 220, -1));
-
-        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEmailFocusLost(evt);
-            }
-        });
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 220, -1));
 
         btAlterar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -394,16 +382,6 @@ public class ClientePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
-    private void txtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomeFocusLost
-        String minuscula = txtNome.getText();
-        txtNome.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtNomeFocusLost
-
-    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
-        String minuscula = txtEmail.getText();
-        txtEmail.setText(minuscula.toUpperCase());
-    }//GEN-LAST:event_txtEmailFocusLost
-
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         txtCPF.setFormatterFactory(Mascara.cleanMak());
         txtRG.setFormatterFactory(Mascara.cleanMak());
@@ -420,11 +398,11 @@ public class ClientePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_gridMouseClicked
 
     private void txtCPFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCPFFocusGained
-
+        txtCPF.setFormatterFactory(Mascara.getCpfMask());
     }//GEN-LAST:event_txtCPFFocusGained
 
     private void txtRGFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRGFocusGained
-
+        txtRG.setFormatterFactory(Mascara.getRgMask());
     }//GEN-LAST:event_txtRGFocusGained
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed

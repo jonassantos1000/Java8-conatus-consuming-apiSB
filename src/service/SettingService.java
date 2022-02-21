@@ -22,7 +22,7 @@ import model.Setting;
  * @author faculdade
  */
 public class SettingService {
-    static String webService = "http://localhost:8080/";
+    static String webService = util.DataSource.getDataSource()+"/";
     static int codigoSucesso = 200;
     
     public static Setting find() {

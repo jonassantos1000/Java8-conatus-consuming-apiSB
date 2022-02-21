@@ -19,7 +19,7 @@ import model.User;
  */
 public class UserService {
 
-    static String webService = "http://localhost:8080/users/name/";
+    static String webService = util.DataSource.getDataSource()+"/users/name/";
     static int codigoSucesso = 200;
 
     public static User find(String login) throws Exception {

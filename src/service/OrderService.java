@@ -22,7 +22,7 @@ import model.Order;
  */
 public class OrderService {
 
-    static String webService = "http://localhost:8080/";
+    static String webService = util.DataSource.getDataSource()+"/";
     static int codigoSucesso = 200;
 
     public static Order findById(String id) throws Exception {
