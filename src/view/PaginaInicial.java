@@ -22,6 +22,7 @@ import view.Clientes.ClientePrincipal;
 import view.Funcionarios.FuncionarioPrincipal;
 import view.Movimentacao.MovimentacaoPrincipal;
 import view.Produto.ProdutoPrincipal;
+import view.Relatorios.RelatoriosPrincipal;
 
 /**
  *
@@ -932,8 +933,8 @@ public class PaginaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaKeyPressed
 
     private void btRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioActionPerformed
-//        RelatoriosPrincipal tela = new RelatoriosPrincipal();
-     //   tela.setVisible(true);
+        RelatoriosPrincipal tela = new RelatoriosPrincipal();
+        tela.setVisible(true);
     }//GEN-LAST:event_btRelatorioActionPerformed
 
     private void btSuporteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSuporteMouseEntered
