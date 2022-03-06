@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -159,7 +161,11 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
         btCancelar = new javax.swing.JButton();
         btProcessar = new javax.swing.JButton();
 
+        FilterProductList.setLocationByPlatform(true);
+        FilterProductList.setMaximumSize(new java.awt.Dimension(528, 300));
+        FilterProductList.setMinimumSize(new java.awt.Dimension(528, 300));
         FilterProductList.setUndecorated(true);
+        FilterProductList.setPreferredSize(new java.awt.Dimension(528, 300));
         FilterProductList.setResizable(false);
         FilterProductList.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -229,6 +235,11 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
 
         FilterProductList.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 310));
 
+        FilterClientList.setMaximumSize(new java.awt.Dimension(528, 300));
+        FilterClientList.setMinimumSize(new java.awt.Dimension(528, 300));
+        FilterClientList.setUndecorated(true);
+        FilterClientList.setPreferredSize(new java.awt.Dimension(528, 300));
+        FilterClientList.setResizable(false);
         FilterClientList.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnFiltrosCliente1.setBackground(new java.awt.Color(255, 255, 255));
@@ -316,7 +327,10 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
 
         FilterClientList.getContentPane().add(pnFiltrosCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 310));
 
+        FilterEmployeeList.setMaximumSize(new java.awt.Dimension(528, 300));
+        FilterEmployeeList.setMinimumSize(new java.awt.Dimension(528, 300));
         FilterEmployeeList.setUndecorated(true);
+        FilterEmployeeList.setPreferredSize(new java.awt.Dimension(528, 300));
         FilterEmployeeList.setResizable(false);
         FilterEmployeeList.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1031,7 +1045,7 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
 
     private void btProcessarServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcessarServicosActionPerformed
         try {
-            int codigo = txtCodigoServico.getText().equals("") ? 0 : Integer.parseInt(txtCodigoServico.getText());
+            Integer codigo = txtCodigoServico.getText().equals("") ? 0 : Integer.parseInt(txtCodigoServico.getText());
             String cbInativo = ckListaInativo.isSelected() == false ? "F" : "T";
             //criando objeto com os filtros fornecidos pelo usuario, para consultar no banco
             List<Product> servicos = service.ProductService.findAll(String.valueOf(codigo), txtDescricaoServico.getText(), cbInativo, limite);
@@ -1077,7 +1091,8 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
     private void btProcessarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcessarFuncionarioActionPerformed
         try {
             int codigo = txtCodigoFuncionario.getText().equals("") ? 0 : Integer.parseInt(txtCodigoFuncionario.getText());
-
+            String rg = txtRGFuncionario.getText().equals("") ? "__.___.___-_" : txtRGFuncionario.getText();
+            String cpf = txtCPFFuncionario.getText().equals("") ? "___.___.___-__" : txtCPFFuncionario.getText();
             //criando objeto com os filtros fornecidos pelo usuario, para consultar no banco
             List<Employee> funcionario = service.EmployeeService.findAll(String.valueOf(codigo), txtNomeFuncionario.getText(), txtCPFFuncionario.getText(), txtRGFuncionario.getText(), "", limite);
 
@@ -1085,8 +1100,8 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
             Map parameters = new HashMap();
             parameters.put("codigo", codigo);
             parameters.put("nome", txtNomeFuncionario.getText());
-            parameters.put("cpf", txtCPFFuncionario.getText());
-            parameters.put("rg", txtRGFuncionario.getText());
+            parameters.put("cpf", cpf);
+            parameters.put("rg", rg);
 
             //fecha a tela de filtros após processar o relatorio
             FilterEmployeeList.setVisible(false);
@@ -1172,7 +1187,11 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
 
             List<Order> movimentacao = service.OrderService.findCustom(String.valueOf(codigoMovimentacao), String.valueOf(codigoCliente),
                     txtNomeClienteMovimentacao.getText(), txtCPFClienteMovimentacao.getText(), txtRGClienteMovimentacao.getText(), txtNomeFuncionarioMovimentacao.getText(), dataConcatenada, limite);
-
+            
+            for (Order obj : movimentacao){
+                obj.setDataCadastro(util.data.formataDataRelatorio(obj.getDataCadastro()));
+            }
+            
             Map parameters = new HashMap();
 
             parameters.put("movimentacao", codigoMovimentacao);
@@ -1238,14 +1257,15 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
     private void btProcessarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcessarCliente1ActionPerformed
         try {
             int codigo = txtCodigoCliente.getText().equals("") ? 0 : Integer.parseInt(txtCodigoCliente.getText());
-
+            String rg = txtRGCliente.getText().equals("") ? "__.___.___-_" : txtRGCliente.getText();
+            String cpf = txtCPFCliente.getText().equals("") ? "___.___.___-__" : txtCPFCliente.getText();
             List<Client> cliente =  service.ClientService.findAll(String.valueOf(codigo), txtNomeCliente.getText(), txtCPFCliente.getText(), txtRGCliente.getText(),"",limite);
 
             Map parameters = new HashMap();
             parameters.put("codigo", codigo);
             parameters.put("nome", txtNomeCliente.getText());
-            parameters.put("cpf", txtCPFCliente.getText());
-            parameters.put("rg", txtRGCliente.getText());
+            parameters.put("cpf", cpf);
+            parameters.put("rg", rg);
 
             FilterClientList.setVisible(false);
 
