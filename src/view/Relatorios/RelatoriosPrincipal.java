@@ -24,6 +24,7 @@ import model.Employee;
 import model.Order;
 import model.Product;
 import model.reports.Report;
+import model.reports.TotalizerPerMonth;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -1211,17 +1212,18 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
 
     private void btProcessarFiltroTotalizadorMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcessarFiltroTotalizadorMesActionPerformed
         try {
-            int ano = txtAnoTotalizadorPorMes.getText().equals("") ? 0 : Integer.parseInt(txtAnoTotalizadorPorMes.getText());
-            Report relatorio = new Report();
-
+            Integer ano = txtAnoTotalizadorPorMes.getText().equals("") ? 0 : Integer.valueOf(txtAnoTotalizadorPorMes.getText());
+            
             Map parameters = new HashMap();
             parameters.put("Ano", ano);
 
             FiltroTotalizadorPorMes.setVisible(false);
             txtAnoTotalizadorPorMes.setText("");
 
+            List<TotalizerPerMonth> rel = service.ReportService.totalizerPerMonth(String.valueOf(ano));
+            
             JasperReport relatorioCompilado = JasperCompileManager.compileReport(this.relatorio.getDirectory());
-            JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, parameters, new JRBeanCollectionDataSource(null));
+            JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, parameters, new JRBeanCollectionDataSource(rel));
             JasperViewer.viewReport(relatorioPreenchido, false);
 
         } catch (JRException ex) {

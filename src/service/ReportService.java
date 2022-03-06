@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.reports.Report;
+import model.reports.TotalizerPerMonth;
 
 /**
  *
@@ -36,6 +37,30 @@ public class ReportService {
             List<Report> report = model.reports.Report.converteJsonEmArray(resposta);
 
             return report;
+
+        } catch (java.net.ConnectException e) {
+            JOptionPane.showMessageDialog(null, "Falha na conexão com o servidor, verifique sua rede e tente novamente !");
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+        public static List<TotalizerPerMonth> totalizerPerMonth(String ano){
+        String urlAPI = webService+"/reports/totalizerpermonth/"+ano;
+        try {
+            URL url = new URL(urlAPI);
+            HttpURLConnection conexao = (HttpURLConnection) url.openConnection();
+
+            if (conexao.getResponseCode() != codigoSucesso) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel pesquisar informações do relatório.");
+                throw new RuntimeException("HTTP error code : " + conexao.getResponseCode());
+            }
+            BufferedReader resposta = new BufferedReader(new InputStreamReader((conexao.getInputStream()), "UTF-8"));
+            List<TotalizerPerMonth> reports = model.reports.TotalizerPerMonth.converteJsonEmArray(resposta);
+
+            return reports;
 
         } catch (java.net.ConnectException e) {
             JOptionPane.showMessageDialog(null, "Falha na conexão com o servidor, verifique sua rede e tente novamente !");
