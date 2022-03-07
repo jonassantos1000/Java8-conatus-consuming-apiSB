@@ -1045,7 +1045,7 @@ public class IncluirMovimento extends javax.swing.JFrame {
                                 try {
                                     //send(diretorio, nomeArquivo, nomeArquivo, email, assunto);
                                     File arq = new File(diretorio);
-                                    //arq.delete();
+                                    arq.delete();
                                 } catch (Exception ex) {
                                     String trace = ExceptionUtils.getStackTrace(ex);
                                     String metodo = String.valueOf(new Throwable().getStackTrace()[0]);
