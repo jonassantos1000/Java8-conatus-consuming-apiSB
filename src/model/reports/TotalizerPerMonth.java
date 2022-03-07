@@ -65,8 +65,6 @@ public class TotalizerPerMonth {
         this.total = total;
     }
 
-    
-
     public static List<TotalizerPerMonth> converteJsonEmArray(BufferedReader buffereReader) throws IOException {
         Gson gson = new Gson();
 

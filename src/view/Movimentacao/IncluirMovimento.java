@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import model.Employee;
 import model.Order;
 import model.OrderItem;
 import model.Product;
+import model.reports.Cupom;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -1016,25 +1018,26 @@ public class IncluirMovimento extends javax.swing.JFrame {
 
             //Verifica se o cliente quer receber e-mail do comprovante conforme marcado no seu cadastro.
             cliente = ClientService.findById(String.valueOf(codCliente));
+            
             if (cliente.getnotificaEmail()!= null && cliente.getnotificaEmail().equals("T")) {
                 if ((cliente.getEmail() == null)) {
                 } else {
 
                     try {
-                        //Relatorio rel = new Relatorio();
                         String nomeArquivo = "Comprovante_" + String.valueOf(codigoMovimentacao) + ".pdf";
                         String diretorio = "C:\\Program Files (x86)\\Conatus\\trace\\" + nomeArquivo;
                         String assunto = "CUPOM DE VENDA - Nº " + String.valueOf(codigoMovimentacao);
                         final String email = cliente.getEmail();
                         JasperReport relatorioCompilado = JasperCompileManager.compileReport("C:\\Program Files (x86)\\Conatus\\Reports\\Comprovante de Venda.jrxml");
-                        //rel.setCodigo(codigoMovimentacao);
                         Map parameters = new HashMap();
-                        //mov.selectAlteraMovimentacao(codCliente);
-                        //parameters.put("nome", mov.getCliente().getresultalteracliente().getNome());
-                        //parameters.put("email", mov.getCliente().getresultalteracliente().getEmail());
-                        //parameters.put("numeroCupom", codigoMovimentacao);
-                        //JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, parameters, new JRBeanCollectionDataSource(rel.selectComprovante(rel)));
-                        //JasperExportManager.exportReportToPdfFile(relatorioPreenchido, diretorio);
+                        
+                        parameters.put("nome", cliente.getNome());
+                        parameters.put("email", cliente.getEmail());
+                        parameters.put("numeroCupom", codigoMovimentacao);
+                        
+                        List<Cupom> listCupom = new ArrayList<>();listCupom.add(service.ReportService.cupom(codigoMovimentacao));
+                        JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, parameters, new JRBeanCollectionDataSource(listCupom));
+                        JasperExportManager.exportReportToPdfFile(relatorioPreenchido, diretorio);
 
                         new Thread() {
                             @Override
@@ -1042,7 +1045,7 @@ public class IncluirMovimento extends javax.swing.JFrame {
                                 try {
                                     //send(diretorio, nomeArquivo, nomeArquivo, email, assunto);
                                     File arq = new File(diretorio);
-                                    arq.delete();
+                                    //arq.delete();
                                 } catch (Exception ex) {
                                     String trace = ExceptionUtils.getStackTrace(ex);
                                     String metodo = String.valueOf(new Throwable().getStackTrace()[0]);
