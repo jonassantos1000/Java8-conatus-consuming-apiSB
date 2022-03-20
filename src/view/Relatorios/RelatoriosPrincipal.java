@@ -7,13 +7,10 @@ package view.Relatorios;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,6 +32,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 import util.Mascara;
+import util.ValidaNumeros;
 
 /**
  *
@@ -60,6 +58,12 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
         modeltable.getColumn(1).setPreferredWidth(300);
         modeltable.getColumn(2).setPreferredWidth(200);
         modeltable.getColumn(3).setPreferredWidth(3);
+        txtCodigoMovimentacao.setDocument(new ValidaNumeros());
+        txtCodigoServico.setDocument(new ValidaNumeros());
+        txtCodigoCliente.setDocument(new ValidaNumeros());
+        txtCodigoFuncionario.setDocument(new ValidaNumeros());
+        txtCodigoClienteMovimentacao.setDocument(new ValidaNumeros());
+        txtCodigoMovimentacao.setDocument(new ValidaNumeros());
     }
 
     /**
@@ -162,10 +166,8 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
         btProcessar = new javax.swing.JButton();
 
         FilterProductList.setLocationByPlatform(true);
-        FilterProductList.setMaximumSize(new java.awt.Dimension(528, 300));
         FilterProductList.setMinimumSize(new java.awt.Dimension(528, 300));
         FilterProductList.setUndecorated(true);
-        FilterProductList.setPreferredSize(new java.awt.Dimension(528, 300));
         FilterProductList.setResizable(false);
         FilterProductList.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -235,10 +237,8 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
 
         FilterProductList.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 310));
 
-        FilterClientList.setMaximumSize(new java.awt.Dimension(528, 300));
         FilterClientList.setMinimumSize(new java.awt.Dimension(528, 300));
         FilterClientList.setUndecorated(true);
-        FilterClientList.setPreferredSize(new java.awt.Dimension(528, 300));
         FilterClientList.setResizable(false);
         FilterClientList.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -472,7 +472,7 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
         pnFiltrosMovimentacoes.add(txtCodigoMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 140, -1));
 
         lbCliente.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        lbCliente.setText("Cliente");
+        lbCliente.setText("Nome Cliente");
         pnFiltrosMovimentacoes.add(lbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
 
         txtCodigoClienteMovimentacao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -557,7 +557,7 @@ public class RelatoriosPrincipal extends javax.swing.JFrame {
         pnFiltrosMovimentacoes.add(txtNomeFuncionarioMovimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 110, -1));
 
         lbFuncionario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        lbFuncionario.setText("Cabeleireiro");
+        lbFuncionario.setText("Nome Func.");
         pnFiltrosMovimentacoes.add(lbFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
