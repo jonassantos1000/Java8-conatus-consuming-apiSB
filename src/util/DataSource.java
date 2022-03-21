@@ -20,9 +20,15 @@ public class DataSource {
     public static String getDataSource() {
         String path = "C:\\Program Files (x86)\\Conatus\\parameters\\datasource.ini";
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String line = null;
-            line = br.readLine();
-            return line;
+            String line = "http://";
+            String ip = br.readLine();
+            Integer porta = ip.indexOf(":");
+            if(porta==-1){
+                porta=8080;
+                return line+ip+":8080";
+            }
+            return line+ip;      
+
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Arquivo datasource.ini não encontrado");
             System.exit(0);
